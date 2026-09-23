@@ -107,4 +107,121 @@
         "&body=" + encodeURIComponent(body);
     });
   }
+
+  // ---- Stage 4: workshop assembly (CSS 3D scene + tiny vanilla scroll driver).
+  // No animation libraries: the scene is pure CSS 3D (GPU-composited,
+  // transform-only); JS only maps scroll position to layer transforms.
+  // Fallbacks: no preserve-3d -> plain stage list; reduced motion -> static
+  // assembled scene with tab-style controls; no JS -> stage list (default).
+  (function initAssembly() {
+    var asm = document.getElementById("assembly");
+    var track = document.getElementById("assemblyTrack");
+    if (!asm || !track) { return; }
+    var supports3D = window.CSS && CSS.supports && CSS.supports("transform-style", "preserve-3d");
+    if (!supports3D) { return; }
+
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var tilt = document.getElementById("aTilt");
+    var glow = document.getElementById("aGlow");
+    var hint = document.getElementById("assemblyHint");
+    var bar = document.getElementById("assemblyBar");
+    var list = document.getElementById("stageList");
+    var layers = Array.prototype.slice.call(track.querySelectorAll("[data-layer]"));
+    var panels = Array.prototype.slice.call(document.querySelectorAll("[data-panel]"));
+    var buttons = Array.prototype.slice.call(document.querySelectorAll("#assemblyControls button"));
+
+    // Each layer assembles during its own overlapping window of overall progress.
+    var STAGE_STARTS = [0, 0.18, 0.36, 0.54];
+    var SPAN = 0.5;
+    var currentStage = -1;
+
+    function clamp01(v) { return Math.min(1, Math.max(0, v)); }
+    function smooth(t) { t = clamp01(t); return t * t * (3 - 2 * t); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function setStage(i) {
+      if (i === currentStage) { return; }
+      currentStage = i;
+      panels.forEach(function (p, idx) {
+        var on = idx === i;
+        p.classList.toggle("is-active", on);
+        if (on) { p.removeAttribute("hidden"); } else { p.setAttribute("hidden", ""); }
+      });
+      buttons.forEach(function (b, idx) {
+        b.setAttribute("aria-current", idx === i ? "true" : "false");
+      });
+    }
+
+    function render(p) {
+      // The whole stack settles from a steep exploded view to a calm 3/4 view.
+      tilt.style.transform = "rotateX(" + lerp(58, 47, p).toFixed(2) + "deg) rotateZ(" +
+        lerp(-16, -9, p).toFixed(2) + "deg)";
+      layers.forEach(function (el, i) {
+        var lp = smooth((p - STAGE_STARTS[i]) / SPAN);
+        var inv = 1 - lp;
+        var x = (i - 1.5) * 84 * inv;
+        var y = (1.5 - i) * 40 * inv;
+        var z = (3 - i) * 150 * inv + i * 20 * lp;
+        el.style.transform = "translate3d(" + x.toFixed(1) + "px," + y.toFixed(1) + "px," +
+          z.toFixed(1) + "px) rotateY(" + ((i - 1.5) * 16 * inv).toFixed(2) + "deg)" +
+          " scale(" + (0.92 + 0.08 * lp).toFixed(3) + ")";
+        el.style.opacity = (0.4 + 0.6 * lp).toFixed(3);
+      });
+      if (glow) { glow.style.opacity = (p * 0.85).toFixed(3); }
+      if (bar) { bar.style.transform = "scaleX(" + p.toFixed(4) + ")"; }
+      if (hint) { hint.classList.toggle("is-done", p > 0.03); }
+      setStage(Math.min(3, Math.floor(p * 4)));
+    }
+
+    function trackProgress() {
+      var total = track.offsetHeight - window.innerHeight;
+      if (total <= 0) { return 1; }
+      return clamp01(-track.getBoundingClientRect().top / total);
+    }
+
+    // Reveal the enhancement, retire the static list.
+    asm.removeAttribute("hidden");
+    if (list) { list.setAttribute("hidden", ""); }
+
+    if (reduced) {
+      asm.classList.add("is-reduced");
+      render(1);
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          setStage(parseInt(b.getAttribute("data-stage"), 10));
+        });
+      });
+      return;
+    }
+
+    var scheduled = false;
+    var active = true;
+    function onScroll() {
+      if (scheduled) { return; }
+      scheduled = true;
+      requestAnimationFrame(function () {
+        scheduled = false;
+        if (active) { render(trackProgress()); }
+      });
+    }
+    // Don't burn frames while the section is off-screen.
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        active = entries[0].isIntersecting;
+        if (active) { onScroll(); }
+      }, { rootMargin: "100px" }).observe(track);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var p = parseInt(b.getAttribute("data-stage"), 10) / 3;
+        var top = track.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: top + p * (track.offsetHeight - window.innerHeight), behavior: "smooth" });
+      });
+    });
+
+    render(trackProgress());
+  })();
 })();
