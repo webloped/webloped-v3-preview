@@ -6,6 +6,33 @@
   <meta name="robots" content="noindex">
   <title>Webloped — Web design &amp; AI automation | Cambridge, Ontario</title>
   <meta name="description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <meta name="theme-color" content="#101014">
+  <link rel="canonical" href="https://webloped.ca/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Webloped">
+  <meta property="og:title" content="Webloped — Web design &amp; AI automation">
+  <meta property="og:description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <meta property="og:url" content="https://webloped.ca/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Webloped — Web design &amp; AI automation">
+  <meta name="twitter:description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Webloped",
+    "url": "https://webloped.ca/",
+    "email": "contact@webloped.ca",
+    "telephone": "+1-647-694-7001",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cambridge",
+      "addressRegion": "ON",
+      "addressCountry": "CA"
+    },
+    "description": "Web design and AI automation studio in Cambridge, Ontario."
+  }
+  </script>
   <link rel="icon" href="assets/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +140,7 @@
               <div><dt>Scope</dt><dd class="pending">What Webloped designed and built</dd></div>
               <div><dt>Outcome</dt><dd class="pending">Measured results only — never invented</dd></div>
             </dl>
+            <p class="work-link"><a href="work/case-study-01.html">Read the draft case-study format <span aria-hidden="true">→</span></a></p>
           </div>
         </article>
 
@@ -133,6 +161,7 @@
               <div><dt>Scope</dt><dd class="pending">What Webloped designed and built</dd></div>
               <div><dt>Outcome</dt><dd class="pending">Measured results only — never invented</dd></div>
             </dl>
+            <p class="work-link"><a href="work/case-study-02.html">Read the draft case-study format <span aria-hidden="true">→</span></a></p>
           </div>
         </article>
       </div>
@@ -191,6 +220,7 @@
               <li>Custom design, mobile-first build</li>
               <li>Redesigns that keep your search visibility</li>
               <li>Copy structure and page planning</li>
+              <li>Contact and enquiry paths that actually work</li>
               <li>Launch checklist and quality review</li>
             </ul>
           </div>
@@ -202,6 +232,7 @@
               <li>Frictionless checkout and payments setup</li>
               <li>Order notifications and confirmations</li>
               <li>Analytics that show what's selling</li>
+              <li>Product and inventory handover training</li>
             </ul>
           </div>
           <div class="service-group">
@@ -215,6 +246,16 @@
               <li>Care plans: updates, backups, small changes</li>
             </ul>
           </div>
+        </div>
+
+        <div class="service-strip">
+          <h3>Included in every project</h3>
+          <ul>
+            <li><strong>Fixed quote in CAD</strong> before we start — the price you approve is the price you pay.</li>
+            <li><strong>You own everything</strong> — domain in your name, finished site, content, and documentation.</li>
+            <li><strong>Plain-language handover</strong> — no lock-in, no hostage clauses, no jargon.</li>
+            <li><strong>Honest scope</strong> — if something is outside our wheelhouse, we say so up front.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -343,6 +384,12 @@
               <p>Send us a few lines about your project through the form below, email us directly, or book a 30-minute call. We'll reply with next steps and a fixed quote.</p>
             </div>
           </details>
+          <details>
+            <summary>Where are you located?</summary>
+            <div class="faq-a">
+              <p>Cambridge, Ontario, Canada — reachable at <a href="mailto:contact@webloped.ca">contact@webloped.ca</a> or <a href="tel:+16476947001">+1 (647) 694-7001</a>. Most projects run fully remote; if you're nearby, we're happy to meet in person.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -367,6 +414,7 @@
           </div>
         </div>
         <form class="contact-form" id="quoteForm" novalidate>
+          <div class="form-errors" id="formErrors" role="alert" hidden></div>
           <div class="field">
             <label for="fName">Your name</label>
             <input type="text" id="fName" name="name" autocomplete="name" required>
@@ -380,11 +428,26 @@
             <input type="text" id="fCompany" name="company" autocomplete="organization">
           </div>
           <div class="field">
+            <label for="fType">What do you need?</label>
+            <select id="fType" name="project_type">
+              <option value="Not specified">Not sure yet</option>
+              <option value="New website">New website</option>
+              <option value="Redesign">Redesign of an existing site</option>
+              <option value="E-commerce">E-commerce store</option>
+              <option value="Automation">AI / automation</option>
+              <option value="Care plan">Hosting &amp; care plan</option>
+            </select>
+          </div>
+          <div class="field">
             <label for="fMsg">About your project</label>
             <textarea id="fMsg" name="message" required aria-describedby="formNote" placeholder="What does your business do, and what should the website achieve?"></textarea>
           </div>
           <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Compose email</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
           <p class="form-note" id="formNote">Direct delivery is being wired up — for now this opens your email app with your message addressed to <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>. Nothing is sent without your review.</p>
+          <noscript>
+            <p class="form-note">JavaScript is off, so this form can't open your email app. Please email us directly at <a href="mailto:contact@webloped.ca">contact@webloped.ca</a> instead.</p>
+          </noscript>
         </form>
       </div>
     </section>
