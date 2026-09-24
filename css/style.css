@@ -141,14 +141,13 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
 }
 .site-nav a {
   color: var(--muted-dark); text-decoration: none; font-size: 16px; font-weight: 500;
-  transition: color var(--ease); padding: 8px 0;
+  transition: color var(--ease), background-color var(--ease); padding: 8px 14px;
 }
 .site-nav a:hover { color: #fff; }
-.site-nav a[aria-current="page"] { color: #fff; position: relative; }
-.site-nav a[aria-current="page"]::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
-  height: 2px; border-radius: 2px;
-  background: linear-gradient(90deg, var(--violet), var(--lilac));
+/* Current page: unmistakable pill highlight so visitors always know where they are. */
+.site-nav a[aria-current="page"] {
+  color: #fff; background: rgba(109, 56, 232, 0.28);
+  border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(139, 109, 255, 0.45);
 }
 /* Mobile menu CTA: a clone of the header CTA is injected by JS (see main.js).
    Hidden on desktop; shown as a full-width button when the mobile menu opens. */
@@ -515,8 +514,8 @@ a.contact-row:hover .value { color: var(--lilac); }
   }
   .site-nav.open { display: block; }
   .site-nav ul { flex-direction: column; gap: 4px; }
-  .site-nav a { display: block; padding: 12px 4px; font-size: 18px; }
-  .site-nav a[aria-current="page"]::after { bottom: 6px; left: 4px; right: 4px; }
+  .site-nav a { display: block; padding: 12px 14px; font-size: 18px; }
+  .site-nav a[aria-current="page"] { border-radius: 12px; }
   .site-nav.open .nav-cta { display: block; margin: 16px 4px 8px; text-align: center; }
   .nav-toggle { display: block; }
   .header-cta { display: none; }
