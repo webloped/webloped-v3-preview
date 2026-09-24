@@ -218,7 +218,10 @@
       b.addEventListener("click", function () {
         var p = parseInt(b.getAttribute("data-stage"), 10) / 3;
         var top = track.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: top + p * (track.offsetHeight - window.innerHeight), behavior: "smooth" });
+        var dest = top + p * (track.offsetHeight - window.innerHeight);
+        // Stage 1 motion foundation: glide through Lenis when it's driving scroll.
+        if (window.__wlScrollTo) { window.__wlScrollTo(dest); }
+        else { window.scrollTo({ top: dest, behavior: "smooth" }); }
       });
     });
 

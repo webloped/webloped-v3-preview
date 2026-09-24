@@ -25,6 +25,13 @@
 
 html { scroll-behavior: smooth; }
 
+/* ---------- Stage 1: Lenis smooth-scroll base ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+html.lenis-on { scroll-behavior: auto; }
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -304,9 +311,17 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
   display: flex; flex-direction: column; gap: 8px;
 }
 .service-group h3 { font-size: 1.5rem; letter-spacing: -0.01em; margin-bottom: 8px; }
+.service-media {
+  overflow: hidden; border-radius: 12px; border: 1px solid var(--line-light);
+  margin-bottom: 14px; aspect-ratio: 16 / 9;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 300ms ease;
+}
 .service-visual {
-  width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;
-  border-radius: 12px; border: 1px solid var(--line-light); margin-bottom: 14px;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  scale: 1.16; /* headroom for the scrubbed parallax drift */
+  transition: scale 500ms cubic-bezier(0.16, 0.7, 0.2, 1);
+  will-change: transform;
 }
 .service-group > p { color: var(--muted-light); font-size: 16.5px; margin: 0 0 12px; }
 .service-group ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
@@ -920,11 +935,10 @@ a.contact-row:hover .value { color: var(--lilac); }
 /* ---------- depth & hover systems ---------- */
 .service-group { transition: transform 260ms ease; }
 .service-group:hover { transform: translateY(-6px); }
-.service-visual {
-  transition: transform 500ms cubic-bezier(0.16, 0.7, 0.2, 1), box-shadow 300ms ease;
-  box-shadow: var(--shadow-card);
-}
-.service-group:hover .service-visual { transform: scale(1.035); box-shadow: var(--shadow-lift); }
+/* Hover zoom uses the independent `scale` property so it composes with the
+   scroll parallax (transform) instead of fighting it. */
+.service-group:hover .service-media { box-shadow: var(--shadow-lift); }
+.service-group:hover .service-visual { scale: 1.22; }
 
 .work-block { transition: transform 260ms ease; }
 .work-block:hover { transform: translateY(-4px); }
