@@ -3,15 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webloped — Web Design, Development &amp; Automation | Cambridge, Ontario</title>
-  <meta name="description" content="Webloped designs and builds distinctive websites that make your business easier to trust, explore, and choose. Web design, development, and automation in Cambridge, Ontario.">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://webloped.github.io/webloped-v3-preview/">
+  <meta name="robots" content="noindex">
+  <title>Webloped — Web design &amp; AI automation | Cambridge, Ontario</title>
+  <meta name="description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <meta name="theme-color" content="#101014">
+  <link rel="canonical" href="https://webloped.ca/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Webloped — Web Design, Development &amp; Automation">
-  <meta property="og:description" content="A remarkable business deserves a remarkable website. Distinctive websites, designed and built in Cambridge, Ontario.">
-  <meta property="og:image" content="https://webloped.github.io/webloped-v3-preview/assets/img/og-card.jpg">
+  <meta property="og:site_name" content="Webloped">
+  <meta property="og:title" content="Webloped — Web design &amp; AI automation">
+  <meta property="og:description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <meta property="og:url" content="https://webloped.ca/">
+  <meta property="og:image" content="https://webloped.ca/assets/img/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Webloped — Web Design and AI Automation, Cambridge, Ontario">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Webloped — Web design &amp; AI automation">
+  <meta name="twitter:description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <meta name="twitter:image" content="https://webloped.ca/assets/img/og-card.jpg">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,32 +39,23 @@
   }
   </script>
   <link rel="icon" href="assets/img/logo.png">
-  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <noscript><style>
-    @media (max-width: 900px) {
-      .menu-toggle { display: none !important; }
-      .mobile-nav {
-        position: static; opacity: 1; transform: none; pointer-events: auto;
-        border-top: 1px solid var(--line-dark);
-      }
-    }
-  </style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="veil" id="veil" aria-hidden="true"></div>
 
-  <header class="site-head">
-    <div class="head-inner">
+  <header class="site-header on-dark">
+    <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Webloped — home">
         <img src="assets/img/logo-w.png" alt="" width="40" height="40">
         <span class="brand-name">Webloped</span>
       </a>
-      <nav aria-label="Primary">
-        <ul class="nav-list">
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <ul>
           <li><a href="#work">Work</a></li>
           <li><a href="#workshop">Workshop</a></li>
           <li><a href="#services">Services</a></li>
@@ -64,510 +64,534 @@
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
-      <a class="btn btn-primary head-cta" href="#contact">Discuss your project</a>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
-        <span aria-hidden="true"></span>
+      <a class="btn btn-primary header-cta" href="#contact">Get a project quote</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+          <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
       </button>
     </div>
   </header>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
-    <a href="#work">Work</a>
-    <a href="#workshop">Workshop</a>
-    <a href="#services">Services</a>
-    <a href="#process">Process</a>
-    <a href="#people">People</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Discuss your project</a>
-  </nav>
 
   <main id="main">
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="top" aria-labelledby="heroTitle">
+    <!-- 1 · HERO -->
+    <section class="hero on-dark" id="top" aria-labelledby="hero-title">
+      <canvas class="hero-fx" id="heroFx" aria-hidden="true"></canvas>
+      <div class="hero-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Web design, development &amp; automation</p>
-          <h1 id="heroTitle">A remarkable business deserves a <span class="it">remarkable website.</span></h1>
-          <p class="lede">We design and build distinctive websites that make your business easier to trust, explore, and choose.</p>
+          <p class="hero-eyebrow"><span class="pulse" aria-hidden="true"></span>Web design &amp; AI automation — Cambridge, Ontario</p>
+          <h1 id="hero-title" data-kinetic>Your next website should be your <span class="accent">best salesperson.</span></h1>
+          <p class="hero-sub">Webloped designs and builds websites that make your business easier to trust, choose, and contact.</p>
           <div class="hero-ctas">
-            <a class="btn btn-primary" href="#contact">Discuss your project <span class="arr" aria-hidden="true">→</span></a>
-            <a class="btn btn-ghost-dark" href="#work">Explore our work</a>
+            <a class="btn btn-primary" href="#contact">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#work">Explore our work</a>
           </div>
-          <p class="hero-note"><strong>How we think</strong> Every site is structure, content, imagery, interface — connected by automation.</p>
+          <p class="hero-note">A small senior team. You talk directly to the people who design and build your site — no account managers, no hand-offs.</p>
         </div>
         <div class="hero-visual">
-          <figure class="hero-frame" id="heroFrame">
-            <img src="assets/img/hero-signature.jpg" alt="An exploded view of a website assembled from precision layers of aubergine satin, violet acrylic, and a champagne edge" fetchpriority="high">
-            <figcaption><span>Structure · Design · Build · Automate</span><span class="dot" aria-hidden="true"></span></figcaption>
-          </figure>
+          <div class="assembly" role="img" aria-label="Concept illustration: a website shown as five stacked layers — structure, content, imagery, interface, and automation">
+            <div class="assembly-stage" aria-hidden="true">
+              <div class="layer layer-grid"></div>
+              <div class="layer layer-content">
+                <div class="bar bar-title"></div>
+                <div class="bar bar-line"></div>
+                <div class="bar bar-line"></div>
+                <div class="bar bar-line short"></div>
+                <div class="bar-row">
+                  <div class="bar-chip"></div>
+                  <div class="bar-chip"></div>
+                </div>
+              </div>
+              <div class="layer layer-image"></div>
+              <div class="layer layer-ui">
+                <div class="ui-card a"></div>
+                <div class="ui-card b"></div>
+                <div class="ui-pill"></div>
+              </div>
+              <svg class="signal" viewBox="0 0 460 560" fill="none" aria-hidden="true">
+                <path d="M60 470 C 150 420, 180 340, 250 300 S 380 220, 400 110"
+                      stroke="#8f5bf0" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="400" cy="110" r="9" fill="#C8B5FF"/>
+                <circle cx="60" cy="470" r="7" fill="#6D38E8"/>
+              </svg>
+            </div>
+          </div>
+          <p class="assembly-caption">How we think: every site is structure, content, imagery, interface — connected by automation.</p>
         </div>
       </div>
+      <a class="scroll-cue" href="#work" aria-label="Scroll to selected work"><span aria-hidden="true"></span></a>
     </section>
 
-    <!-- ============ WORK ============ -->
-    <section class="sec surface-ivory" id="work" aria-labelledby="workTitle">
+    <!-- 2 · SELECTED WORK -->
+    <section class="section work" id="work" aria-labelledby="work-title">
       <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Selected work</p>
-          <h2 id="workTitle">Concepts, carried all the way through.</h2>
-          <p class="lede">No client work to show yet — so we built two complete concept projects the way we would build for a client: every screen considered, every word written. Each is labelled for what it is.</p>
+        <div class="section-head">
+          <p class="eyebrow">01 — Selected work</p>
+          <h2 class="section-title" id="work-title">Work we're proud to stand behind.</h2>
+          <p class="section-lede">Real client case studies will live here, with permission. Until then, the structure below shows exactly what each case study will document — no filler projects, no invented results.</p>
         </div>
 
-        <div class="reveal-group">
-          <article class="project reveal">
-            <figure>
-              <div class="browser-frame">
-                <a class="shot-link" href="work/concept-atelier.html" aria-label="View the Atelier North concept project">
-                  <img src="assets/img/work-atelier.jpg" alt="Desktop view of the Atelier North concept website: a quiet editorial site for an architecture practice" loading="lazy">
-                </a>
-              </div>
-            </figure>
+        <article class="work-block">
+          <div class="work-visual placeholder">
             <div>
-              <p class="project-class">Concept project · Architecture</p>
-              <h3>Atelier North</h3>
-              <p>We imagined a Toronto architecture practice with a strong body of work, then designed the website it deserves: a quiet, editorial site with a project index that lets the work speak, a practice page with a point of view, and an enquiry flow a busy principal would actually finish.</p>
-              <dl class="p-meta">
-                <div><dt>Scope</dt><dd>Design + build</dd></div>
-                <div><dt>Format</dt><dd>Single-page website</dd></div>
-                <div><dt>Status</dt><dd>Original concept</dd></div>
-              </dl>
-              <a class="text-link" href="work/concept-atelier.html">View the concept <span aria-hidden="true">→</span></a>
+              <span class="placeholder-tag">Concept placeholder</span>
+              <p>Authorized project imagery replaces this panel. Desktop and mobile captures, with the client's permission.</p>
             </div>
-          </article>
+          </div>
+          <div class="work-meta">
+            <p class="work-index">Case study 01</p>
+            <h3>Awaiting first published case study</h3>
+            <dl class="case-schema">
+              <div><dt>Client</dt><dd class="pending">To be confirmed — published only with permission</dd></div>
+              <div><dt>Sector</dt><dd class="pending">Pending</dd></div>
+              <div><dt>Problem</dt><dd class="pending">What the business needed, in their words</dd></div>
+              <div><dt>Scope</dt><dd class="pending">What Webloped designed and built</dd></div>
+              <div><dt>Outcome</dt><dd class="pending">Measured results only — never invented</dd></div>
+            </dl>
+            <p class="work-link"><a href="work/case-study-01.html">Read the draft case-study format <span aria-hidden="true">→</span></a></p>
+          </div>
+        </article>
 
-          <article class="project reveal">
-            <figure>
-              <div class="browser-frame">
-                <a class="shot-link" href="work/concept-hartwell.html" aria-label="View the Hartwell and Sons concept project">
-                  <img src="assets/img/work-hartwell.jpg" alt="Desktop view of the Hartwell and Sons concept website: a premium home renovation company site" loading="lazy">
-                </a>
-              </div>
-            </figure>
+        <article class="work-block flip">
+          <div class="work-visual placeholder">
             <div>
-              <p class="project-class">Concept project · Home services</p>
-              <h3>Hartwell &amp; Sons</h3>
-              <p>We imagined a premium home renovation company competing on trust, then built the site it would need: calm and confident, with clear services, a three-step process, and service areas stated plainly — everything a homeowner needs to pick up the phone.</p>
-              <dl class="p-meta">
-                <div><dt>Scope</dt><dd>Design + build</dd></div>
-                <div><dt>Format</dt><dd>Single-page website</dd></div>
-                <div><dt>Status</dt><dd>Original concept</dd></div>
-              </dl>
-              <a class="text-link" href="work/concept-hartwell.html">View the concept <span aria-hidden="true">→</span></a>
+              <span class="placeholder-tag">Concept placeholder</span>
+              <p>Authorized project imagery replaces this panel. Desktop and mobile captures, with the client's permission.</p>
             </div>
-          </article>
-        </div>
+          </div>
+          <div class="work-meta">
+            <p class="work-index">Case study 02</p>
+            <h3>Awaiting second published case study</h3>
+            <dl class="case-schema">
+              <div><dt>Client</dt><dd class="pending">To be confirmed — published only with permission</dd></div>
+              <div><dt>Sector</dt><dd class="pending">Pending</dd></div>
+              <div><dt>Problem</dt><dd class="pending">What the business needed, in their words</dd></div>
+              <div><dt>Scope</dt><dd class="pending">What Webloped designed and built</dd></div>
+              <div><dt>Outcome</dt><dd class="pending">Measured results only — never invented</dd></div>
+            </dl>
+            <p class="work-link"><a href="work/case-study-02.html">Read the draft case-study format <span aria-hidden="true">→</span></a></p>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- ============ STUDIO REEL ============ -->
-    <section class="sec surface-dark" aria-labelledby="reelTitle" style="padding-top: 0;">
+    <!-- 3 · WORKSHOP (interactive 3D assembly — Stage 4) -->
+    <section class="section workshop on-dark" id="workshop" aria-labelledby="workshop-title">
       <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">In motion</p>
-          <h2 id="reelTitle">The work, in motion.</h2>
-          <p class="lede">Twelve seconds of real builds — concept sites, interfaces, and responsive layouts. It plays only when you press play.</p>
+        <div class="section-head">
+          <p class="eyebrow">02 — The workshop</p>
+          <h2 class="section-title" id="workshop-title">What goes into a website that works.</h2>
+          <p class="section-lede">Four stages, one assembled result. Scroll to watch a website come together layer by layer - or jump straight to any stage.</p>
         </div>
-        <div class="reel-frame reveal">
-          <video controls preload="none" poster="assets/img/reel-poster.jpg" aria-label="Studio reel: a twelve-second montage of Webloped concept websites and interfaces">
-            <source src="assets/video/studio-reel.mp4" type="video/mp4">
-            <img src="assets/img/reel-poster.jpg" alt="Montage of Webloped concept websites: Atelier North and Hartwell and Sons">
-          </video>
-          <p class="reel-cap">Atelier North · Hartwell &amp; Sons — original concept demonstrations.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ WORKSHOP ============ -->
-    <section class="workshop surface-aubergine" id="workshop" aria-labelledby="workshopTitle">
-      <div class="wrap sec" style="padding-bottom: 0;">
-        <div class="ws-intro reveal">
-          <p class="eyebrow">The workshop</p>
-          <h2 id="workshopTitle">Watch a website take shape.</h2>
-          <p class="lede">Four stages, one build — strategy becomes structure, design, a working interface, and the automation that follows up while you sleep. Scroll to assemble it, or use the controls.</p>
-        </div>
-      </div>
-
-      <div class="ws-pin" id="wsPin">
-        <div class="wrap ws-scene-wrap">
-          <div class="ws-copy">
-            <div class="ws-step is-active" data-step="0">
-              <p class="ws-stage-label">Stage 1 · Strategy</p>
-              <h3>Structure and hierarchy.</h3>
-              <p>We decide what the site must say and in what order — the pages, the sections, and the single action each one exists to earn. Nothing decorative survives this stage.</p>
-            </div>
-            <div class="ws-step" data-step="1">
-              <p class="ws-stage-label">Stage 2 · Design</p>
-              <h3>Typography, imagery, and colour.</h3>
-              <p>Real words set in real type, a palette with a point of view, and imagery chosen for the business. This is where a website starts to feel inevitable.</p>
-            </div>
-            <div class="ws-step" data-step="2">
-              <p class="ws-stage-label">Stage 3 · Development</p>
-              <h3>A polished desktop and mobile interface.</h3>
-              <p>The design becomes a fast, responsive website — as considered on a phone in one hand as on a studio monitor.</p>
-            </div>
-            <div class="ws-step" data-step="3">
-              <p class="ws-stage-label">Stage 4 · Automation</p>
-              <h3>Enquiry, confirmation, and follow-up.</h3>
-              <p>Every enquiry is acknowledged in seconds and followed up without chasing. The site keeps working after the visitor leaves — that is the part most websites never get.</p>
-            </div>
-            <div class="ws-controls" role="group" aria-label="Workshop controls">
-              <button class="ws-btn" id="wsPrev" aria-label="Previous stage">← Prev</button>
-              <div class="ws-dots" role="tablist" aria-label="Workshop stages">
-                <button class="ws-dot is-active" data-goto="0" role="tab" aria-selected="true" aria-label="Stage 1: Strategy"></button>
-                <button class="ws-dot" data-goto="1" role="tab" aria-selected="false" aria-label="Stage 2: Design"></button>
-                <button class="ws-dot" data-goto="2" role="tab" aria-selected="false" aria-label="Stage 3: Development"></button>
-                <button class="ws-dot" data-goto="3" role="tab" aria-selected="false" aria-label="Stage 4: Automation"></button>
-              </div>
-              <button class="ws-btn" id="wsNext" aria-label="Next stage">Next →</button>
-              <button class="ws-skip" id="wsSkip">Skip the build</button>
-            </div>
-          </div>
-
-          <div class="ws-stage" aria-hidden="true">
-            <div class="ws-assembly" id="wsAssembly">
-              <div class="ws-layer ws-layer--blueprint" data-layer="0">
-                <div class="bp-grid">
-                  <div class="bp-cell wide">Navigation</div>
-                  <div class="bp-cell">Hero</div>
-                  <div class="bp-cell">Services</div>
-                  <div class="bp-cell">Work</div>
-                  <div class="bp-cell">Process</div>
-                  <div class="bp-cell">People</div>
-                  <div class="bp-cell">FAQ</div>
-                  <div class="bp-cell wide">Contact · Enquiry</div>
+        <!-- Stage 4: interactive website assembly. Progressive enhancement:
+             hidden until JS confirms CSS 3D support. No-JS / no-3D visitors
+             get the plain stage list below, which stays fully readable. -->
+        <div class="assembly" id="assembly" hidden>
+          <div class="assembly-track" id="assemblyTrack">
+            <div class="assembly-sticky">
+              <div class="assembly-grid">
+                <div class="assembly-viewport">
+                  <div class="a-tilt" id="aTilt">
+                    <div class="a-sway">
+                      <div class="a-stack" id="aStack">
+                        <div class="a-layer a-l1" data-layer aria-hidden="true">
+                          <span class="a-tag">01 / Structure</span>
+                          <span class="bp bp-head"></span>
+                          <span class="bp bp-hero"></span>
+                          <span class="bp-cols"><i></i><i></i><i></i></span>
+                          <span class="bp bp-foot"></span>
+                        </div>
+                        <div class="a-layer a-l2" data-layer aria-hidden="true">
+                          <span class="a-tag">02 / Content</span>
+                          <span class="tx tx-h"></span>
+                          <span class="tx tx-h tx-h2"></span>
+                          <span class="tx tx-l"></span>
+                          <span class="tx tx-l"></span>
+                          <span class="tx tx-l tx-mid"></span>
+                          <span class="tx tx-q"></span>
+                        </div>
+                        <div class="a-layer a-l3" data-layer aria-hidden="true">
+                          <span class="a-tag">03 / Imagery</span>
+                          <span class="im im-hero"><i></i></span>
+                          <span class="im-row"><i></i><i></i></span>
+                          <span class="im-dev"><b class="d-desk"></b><b class="d-mob"></b></span>
+                        </div>
+                        <div class="a-layer a-l4" data-layer aria-hidden="true">
+                          <span class="a-tag">04 / Interface</span>
+                          <span class="ui ui-nav"><i></i><i></i><i></i><b></b></span>
+                          <span class="ui-cta"><b></b><b class="ghost"></b></span>
+                          <span class="ui-chat"><i></i><i></i><i></i></span>
+                          <span class="ui-nodes"><i></i><i></i><i></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="a-glow" id="aGlow" aria-hidden="true"></div>
+                  <p class="assembly-hint" id="assemblyHint" aria-hidden="true">Scroll to assemble</p>
                 </div>
-              </div>
-              <div class="ws-layer ws-layer--design" data-layer="1">
-                <div class="dg">
-                  <p class="dg-type">A remarkable business deserves a remarkable website.</p>
-                  <p class="dg-sub">Fraunces for voice, Inter for clarity — set with room to breathe.</p>
-                  <div class="dg-swatches" aria-hidden="true">
-                    <i style="background:#100e14"></i><i style="background:#7042c1"></i>
-                    <i style="background:#d9c8f2"></i><i style="background:#c5ad7c"></i>
-                    <i style="background:#f6f2ea"></i>
+                <div class="assembly-side">
+                  <div class="assembly-panels" id="assemblyPanels">
+                    <div class="a-panel is-active" data-panel="0">
+                      <p class="a-stage-num">Stage 1</p>
+                      <h3>Strategy</h3>
+                      <p>Decide what visitors need to understand and do. We map your services, your customers, and the single action your site must drive.</p>
+                    </div>
+                    <div class="a-panel" data-panel="1" hidden>
+                      <p class="a-stage-num">Stage 2</p>
+                      <h3>Design</h3>
+                      <p>Make the business clear and credible. Layout, typography, and imagery composed around trust - reviewed with you before a line of code.</p>
+                    </div>
+                    <div class="a-panel" data-panel="2" hidden>
+                      <p class="a-stage-num">Stage 3</p>
+                      <h3>Development</h3>
+                      <p>Make it work across devices. Clean, fast, accessible builds - tested on desktop and mobile, with nothing decorative blocking content.</p>
+                    </div>
+                    <div class="a-panel" data-panel="3" hidden>
+                      <p class="a-stage-num">Stage 4</p>
+                      <h3>Automation</h3>
+                      <p>Connect the next step. Enquiry handling, follow-ups, and bookings wired so no lead waits on a manual process.</p>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="ws-layer ws-layer--build" data-layer="2">
-                <div class="mini">
-                  <div class="mini-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-                  <div class="mini-nav"><b>Fern &amp; Field</b><span><span>Work</span><span>Studio</span><span>Contact</span></span></div>
-                  <div class="mini-hero">
-                    <h4>Gardens with a point of view.</h4>
-                    <p>Landscape design for people who notice the difference.</p>
+                  <div class="assembly-controls" role="group" aria-label="Jump to an assembly stage" id="assemblyControls">
+                    <button type="button" data-stage="0" aria-current="true"><span class="ac-num" aria-hidden="true">1</span> Strategy</button>
+                    <button type="button" data-stage="1" aria-current="false"><span class="ac-num" aria-hidden="true">2</span> Design</button>
+                    <button type="button" data-stage="2" aria-current="false"><span class="ac-num" aria-hidden="true">3</span> Development</button>
+                    <button type="button" data-stage="3" aria-current="false"><span class="ac-num" aria-hidden="true">4</span> Automation</button>
                   </div>
-                  <div class="mini-ctas"><s>Start your project</s><s>See the work</s></div>
-                  <div class="mini-tiles" aria-hidden="true">
-                    <i style="background:linear-gradient(135deg,#2c4636,#5b7a5e)"></i>
-                    <i style="background:linear-gradient(135deg,#c5ad7c,#e8dcc0)"></i>
-                    <i style="background:linear-gradient(135deg,#7042c1,#3d2a6e)"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="ws-layer ws-layer--flow" data-layer="3">
-                <div class="fl">
-                  <p class="fl-note">AUTOMATION · ALWAYS ON</p>
-                  <div class="fl-row">
-                    <div class="fl-card"><b>Enquiry received</b><span>A visitor asks about a project. Nothing gets lost.</span></div>
-                    <span class="fl-arrow">→</span>
-                    <div class="fl-card"><b>Confirmation sent</b><span>A warm reply in seconds, automatically.</span></div>
-                    <span class="fl-arrow">→</span>
-                    <div class="fl-card"><b>Follow-up scheduled</b><span>The conversation continues without chasing.</span></div>
-                  </div>
+                  <div class="assembly-progress" aria-hidden="true"><span id="assemblyBar"></span></div>
+                  <a class="assembly-skip" href="#services">Skip the assembly</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ SERVICES ============ -->
-    <section class="sec surface-ivory" id="services" aria-labelledby="servicesTitle">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Services</p>
-          <h2 id="servicesTitle">Considered design. Capable development.</h2>
-          <p class="lede">Three things we do well — each one designed around a single job: turning a visitor's interest into a conversation.</p>
-        </div>
-
-        <div class="reveal-group">
-          <div class="service-row reveal">
-            <figure class="service-media">
-              <img src="assets/img/service-websites.jpg" alt="A desktop and smartphone interface rendered as precision objects in aubergine, violet, and champagne" loading="lazy">
-              <figcaption>A responsive interface, designed as one object.</figcaption>
-            </figure>
-            <div class="service-copy">
-              <p class="eyebrow">Websites</p>
-              <h3>Websites that earn the click.</h3>
-              <p>Distinctive, fast websites designed around one job: turning a visitor's interest into a conversation. No templates, no filler pages — every section has to justify its place.</p>
-              <ul class="service-list">
-                <li>Custom design, never a template</li>
-                <li>Mobile-first, responsive build</li>
-                <li>Clear calls to action on every page</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-row flip reveal">
-            <figure class="service-media">
-              <img src="assets/img/service-commerce.jpg" alt="Product discovery, product detail, and checkout panels rendered as precision objects" loading="lazy">
-              <figcaption>From discovery to checkout, one calm flow.</figcaption>
-            </figure>
-            <div class="service-copy">
-              <p class="eyebrow">Online stores</p>
-              <h3>Stores as considered as the products.</h3>
-              <p>Product discovery to checkout, designed to feel as considered as the products themselves — so buying feels as good as the thing being bought.</p>
-              <ul class="service-list">
-                <li>Product pages that do the selling</li>
-                <li>Simple, trustworthy checkout</li>
-                <li>Easy for you to update yourself</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-row reveal">
-            <figure class="service-media">
-              <img src="assets/img/service-automation.jpg" alt="Three connected interface cards showing an enquiry-to-follow-up sequence" loading="lazy">
-              <figcaption>The machinery that never sleeps.</figcaption>
-            </figure>
-            <div class="service-copy">
-              <p class="eyebrow">Automation</p>
-              <h3>The quiet machinery behind the site.</h3>
-              <p>The part most websites never get: every enquiry acknowledged in seconds, confirmations sent warmly, follow-ups handled without you chasing. Your site keeps working after the visitor leaves.</p>
-              <ul class="service-list">
-                <li>Instant enquiry confirmation</li>
-                <li>Follow-up sequences that feel personal</li>
-                <li>Connected to the inbox you already use</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PROCESS ============ -->
-    <section class="sec surface-dark" id="process" aria-labelledby="processTitle">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">Process</p>
-          <h2 id="processTitle">A clear path from first conversation to launch.</h2>
-          <p class="lede">No black box, no big reveal. You always know where your project stands and what happens next.</p>
-        </div>
-        <ol class="steps reveal-group">
-          <li class="step reveal">
-            <span class="step-num" aria-hidden="true">01</span>
-            <div>
-              <h3>Conversation</h3>
-              <p>We start with a call about your business: what you offer, who it is for, and what a good website would change. You will know quickly whether we are the right fit — and we will tell you honestly if we are not.</p>
+        <ol class="stage-list" id="stageList">
+          <li class="stage">
+            <span class="stage-num">Stage 1</span>
+            <h3>Strategy</h3>
+            <p>Decide what visitors need to understand and do. We map your services, your customers, and the single action your site must drive.</p>
+            <div class="stage-figure" role="img" aria-label="Blueprint wireframe icon: the structure stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><rect x="8" y="8" width="104" height="74" rx="6" fill="none" stroke="#C8B5FF" stroke-width="2" stroke-dasharray="6 5"/><rect x="20" y="20" width="80" height="18" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="20" y="46" width="24" height="24" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="48" y="46" width="24" height="24" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="76" y="46" width="24" height="24" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/></svg>
             </div>
           </li>
-          <li class="step reveal">
-            <span class="step-num" aria-hidden="true">02</span>
-            <div>
-              <h3>Design &amp; build</h3>
-              <p>We design in the open, in rounds you can react to, then build the approved design as a fast, responsive website. You see real progress throughout — never a surprise unveiling.</p>
+          <li class="stage">
+            <span class="stage-num">Stage 2</span>
+            <h3>Design</h3>
+            <p>Make the business clear and credible. Layout, typography, and imagery composed around trust — reviewed with you before a line of code.</p>
+            <div class="stage-figure" role="img" aria-label="Typography icon: the design stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><rect x="20" y="14" width="80" height="10" rx="5" fill="#F6F5F1"/><rect x="32" y="30" width="56" height="8" rx="4" fill="#F6F5F1" opacity="0.7"/><rect x="20" y="48" width="80" height="5" rx="2.5" fill="#C8B5FF" opacity="0.8"/><rect x="20" y="58" width="80" height="5" rx="2.5" fill="#C8B5FF" opacity="0.55"/><rect x="20" y="68" width="52" height="5" rx="2.5" fill="#C8B5FF" opacity="0.35"/></svg>
             </div>
           </li>
-          <li class="step reveal">
-            <span class="step-num" aria-hidden="true">03</span>
-            <div>
-              <h3>Launch &amp; after</h3>
-              <p>We launch carefully and check everything twice. The site is yours, outright — and if you would like us to keep improving it, we stay within reach.</p>
+          <li class="stage">
+            <span class="stage-num">Stage 3</span>
+            <h3>Development</h3>
+            <p>Make it work across devices. Clean, fast, accessible builds — tested on desktop and mobile, with nothing decorative blocking content.</p>
+            <div class="stage-figure" role="img" aria-label="Devices icon: the development stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><rect x="14" y="18" width="66" height="46" rx="6" fill="none" stroke="#C8B5FF" stroke-width="2"/><rect x="20" y="24" width="54" height="28" rx="3" fill="#6D38E8" opacity="0.45"/><rect x="86" y="26" width="20" height="38" rx="5" fill="none" stroke="#C8B5FF" stroke-width="2"/><rect x="90" y="32" width="12" height="20" rx="2" fill="#6D38E8" opacity="0.45"/><line x1="40" y1="70" x2="54" y2="70" stroke="#C8B5FF" stroke-width="2"/></svg>
+            </div>
+          </li>
+          <li class="stage">
+            <span class="stage-num">Stage 4</span>
+            <h3>Automation</h3>
+            <p>Connect the next step. Enquiry handling, follow-ups, and bookings wired so no lead waits on a manual process.</p>
+            <div class="stage-figure" role="img" aria-label="Connected nodes icon: the automation stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><line x1="30" y1="45" x2="60" y2="24" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="30" y1="45" x2="60" y2="66" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="24" x2="92" y2="45" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="66" x2="92" y2="45" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="30" cy="45" r="8" fill="#6D38E8"/><circle cx="60" cy="24" r="8" fill="#6D38E8"/><circle cx="60" cy="66" r="8" fill="#6D38E8"/><circle cx="92" cy="45" r="8" fill="#C8B5FF"/></svg>
             </div>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- ============ PEOPLE ============ -->
-    <section class="sec surface-ivory" id="people" aria-labelledby="peopleTitle">
+    <!-- 4 · SERVICES -->
+    <section class="section services" id="services" aria-labelledby="services-title">
       <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">People</p>
-          <h2 id="peopleTitle">The people behind your next website.</h2>
-          <p class="lede">A small senior team. You talk directly to the people who design and build your site.</p>
+        <div class="section-head">
+          <p class="eyebrow">03 — Services</p>
+          <h2 class="section-title" id="services-title">Everything a website needs to win.</h2>
+          <p class="section-lede">Three groups, each with concrete deliverables. If it isn't listed, ask us — we'll tell you plainly whether it's in our wheelhouse.</p>
         </div>
-        <div class="people-grid reveal-group">
-          <article class="person reveal">
-            <figure>
-              <img src="assets/img/lakshay.jpg" alt="Portrait of Lakshay Sharma" loading="lazy">
-              <figcaption>
-                <h3>Lakshay Sharma</h3>
-                <p class="role">Head of Digital Solutions</p>
-                <p>Six years designing and building for the web. Leads design and development — and the conversation about your project, from first call to launch.</p>
-              </figcaption>
-            </figure>
-          </article>
-          <article class="person reveal">
-            <figure>
-              <img src="assets/img/dhruv.jpg" alt="Portrait of Dhruv Sharma" loading="lazy">
-              <figcaption>
-                <h3>Dhruv Sharma</h3>
-                <p class="role">Head of AI Innovation and Automation</p>
-                <p>Eight years building systems that work while you don't. Leads automation — the enquiry handling, confirmations, and follow-ups behind the site.</p>
-              </figcaption>
-            </figure>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ INVESTMENT ============ -->
-    <section class="sec surface-ivory" id="investment" aria-labelledby="investTitle" style="padding-top: 0;">
-      <div class="wrap">
-        <div class="invest-grid">
-          <div class="invest-copy reveal">
-            <p class="eyebrow">Investment</p>
-            <h2 id="investTitle">An honest word on investment.</h2>
-            <p class="lede" style="margin-top: 20px;">Every project is quoted individually, because no two businesses need the same website. What we can say plainly:</p>
-            <p style="margin-top: 28px;"><a class="text-link" href="#contact">Discuss your project <span aria-hidden="true">→</span></a></p>
+        <div class="service-groups">
+          <div class="service-group">
+            <img class="service-visual" src="assets/img/service-design.jpg" alt="Abstract illustration of website wireframe layers assembling in 3D" width="800" height="450" loading="lazy">
+            <h3>Websites &amp; redesigns</h3>
+            <p>Custom sites for businesses that have outgrown templates — or never had a proper site at all.</p>
+            <ul>
+              <li>Custom design, mobile-first build</li>
+              <li>Redesigns that keep your search visibility</li>
+              <li>Copy structure and page planning</li>
+              <li>Contact and enquiry paths that actually work</li>
+              <li>Launch checklist and quality review</li>
+            </ul>
           </div>
-          <ul class="invest-points reveal-group">
-            <li class="reveal">
-              <span class="tick" aria-hidden="true">✓</span>
-              <div><b>Quoted, not packaged</b><span>You get a fixed quote for your project after we understand it — no tiers designed to upsell you.</span></div>
-            </li>
-            <li class="reveal">
-              <span class="tick" aria-hidden="true">✓</span>
-              <div><b>Yours, outright</b><span>The website we build for you belongs to you: design, content, and code.</span></div>
-            </li>
-            <li class="reveal">
-              <span class="tick" aria-hidden="true">✓</span>
-              <div><b>No surprises</b><span>The quote covers design, build, and launch. If something would cost extra, you hear it before we do it — not after.</span></div>
-            </li>
+          <div class="service-group">
+            <img class="service-visual" src="assets/img/service-commerce.jpg" alt="Abstract illustration of a storefront awning flowing into a checkout with a glowing checkmark" width="800" height="450" loading="lazy">
+            <h3>E-commerce</h3>
+            <p>Stores engineered around checkout — because a beautiful store that drops carts is just decoration.</p>
+            <ul>
+              <li>Storefront design and product catalogues</li>
+              <li>Frictionless checkout and payments setup</li>
+              <li>Order notifications and confirmations</li>
+              <li>Analytics that show what's selling</li>
+              <li>Product and inventory handover training</li>
+            </ul>
+          </div>
+          <div class="service-group">
+            <img class="service-visual" src="assets/img/service-automation.jpg" alt="Abstract illustration of glowing network nodes forming a chat bubble on a dark background" width="800" height="450" loading="lazy">
+            <h3>Automation &amp; ongoing growth</h3>
+            <p>The site keeps working after launch: answering, following up, and getting found.</p>
+            <ul>
+              <li>AI chatbots trained on your business info</li>
+              <li>Review and follow-up automations</li>
+              <li>SEO foundations and local search setup</li>
+              <li>Google Business and map presence</li>
+              <li>Care plans: updates, backups, small changes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-strip">
+          <h3>Included in every project</h3>
+          <ul>
+            <li><strong>Fixed quote in CAD</strong> before we start — the price you approve is the price you pay.</li>
+            <li><strong>You own everything</strong> — domain in your name, finished site, content, and documentation.</li>
+            <li><strong>Plain-language handover</strong> — no lock-in, no hostage clauses, no jargon.</li>
+            <li><strong>Honest scope</strong> — if something is outside our wheelhouse, we say so up front.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- ============ FAQ ============ -->
-    <section class="sec surface-ivory" id="faq" aria-labelledby="faqTitle" style="padding-top: 0;">
+    <!-- 5 · PROCESS -->
+    <section class="section process" id="process" aria-labelledby="process-title">
       <div class="wrap">
-        <div class="sec-head reveal">
+        <div class="section-head">
+          <p class="eyebrow">04 — Process</p>
+          <h2 class="section-title" id="process-title">Three moves. Zero guesswork.</h2>
+          <p class="section-lede">You approve each stage before we proceed. No 40-page proposals, no jargon.</p>
+        </div>
+        <ol class="process-steps">
+          <li class="process-step">
+            <span class="step-n">01</span>
+            <h3>Discover</h3>
+            <p>We learn your business, your customers, and what your current site is missing.</p>
+            <ul>
+              <li>Working session, not a questionnaire dump</li>
+              <li>Clear scope and a fixed quote</li>
+            </ul>
+          </li>
+          <li class="process-step">
+            <span class="step-n">02</span>
+            <h3>Design &amp; build</h3>
+            <p>Copy, design, and code in tight feedback loops — you watch it come alive and steer it.</p>
+            <ul>
+              <li>Design review before development</li>
+              <li>Staging link you can share with your team</li>
+            </ul>
+          </li>
+          <li class="process-step">
+            <span class="step-n">03</span>
+            <h3>Launch &amp; improve</h3>
+            <p>We launch, measure, and keep optimizing. Support doesn't end on go-live day.</p>
+            <ul>
+              <li>Launch checklist and handover</li>
+              <li>Care plans for updates and growth</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6 · PEOPLE -->
+    <section class="section people" id="people" aria-labelledby="people-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">05 — People</p>
+          <h2 class="section-title" id="people-title">Built by people who give a damn.</h2>
+          <p class="section-lede">A small senior team in Cambridge, Ontario. You talk to the people who actually build your site.</p>
+        </div>
+        <div class="people-grid">
+          <article class="person">
+            <img src="assets/img/lakshay.jpg" alt="Portrait of Lakshay Sharma" width="760" height="858" loading="lazy">
+            <div>
+              <h3>Lakshay Sharma</h3>
+              <p class="role">Head of Digital Solutions</p>
+              <p>Turns business goals into websites that sell — strategy, design direction, and making sure your site earns its keep.</p>
+            </div>
+          </article>
+          <article class="person">
+            <img src="assets/img/dhruv.jpg" alt="Portrait of Dhruv Sharma" width="675" height="900" loading="lazy">
+            <div>
+              <h3>Dhruv Sharma</h3>
+              <p class="role">Head of AI Innovation &amp; Automation</p>
+              <p>Builds AI systems that do the busywork — chatbots, automations, and integrations that give you your week back.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · INVESTMENT & FAQ -->
+    <section class="section invest" id="faq" aria-labelledby="invest-title">
+      <div class="wrap">
+        <div class="invest-card on-dark">
+          <div>
+            <p class="eyebrow">06 — Investment</p>
+            <h2 id="invest-title">Quoted per project. Fixed before we start.</h2>
+            <p>Every project is scoped individually and quoted up front — what's included, what it costs in CAD, and what happens after launch. No hourly meter, no surprise line items.</p>
+          </div>
+          <div>
+            <a class="btn btn-primary" href="#contact">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <div class="section-head">
           <p class="eyebrow">Questions</p>
-          <h2 id="faqTitle">Asked often, answered plainly.</h2>
+          <h2 class="section-title">Before you ask.</h2>
         </div>
-        <div class="faq-list reveal-group">
-          <div class="faq-item reveal" data-open="false">
-            <button class="faq-q" aria-expanded="false">How much does a website cost?<span class="pm" aria-hidden="true">+</span></button>
-            <div class="faq-a"><div><p>It depends on what the site needs to do. After a first conversation, we give you a fixed written quote for your project. If your budget cannot stretch to what you need, we will tell you so — rather than sell you half a website.</p></div></div>
-          </div>
-          <div class="faq-item reveal" data-open="false">
-            <button class="faq-q" aria-expanded="false">How long does it take?<span class="pm" aria-hidden="true">+</span></button>
-            <div class="faq-a"><div><p>A typical project runs a few weeks from approved design to launch. You get a realistic timeline with your quote, and we keep you posted if anything moves it.</p></div></div>
-          </div>
-          <div class="faq-item reveal" data-open="false">
-            <button class="faq-q" aria-expanded="false">Will I be able to update the site myself?<span class="pm" aria-hidden="true">+</span></button>
-            <div class="faq-a"><div><p>Yes. We build so you can change text and images without us, and we walk you through it at handover.</p></div></div>
-          </div>
-          <div class="faq-item reveal" data-open="false">
-            <button class="faq-q" aria-expanded="false">Do you write the words too?<span class="pm" aria-hidden="true">+</span></button>
-            <div class="faq-a"><div><p>We do. Every site includes copy written for your business and your customers — you review and approve every line before it goes live.</p></div></div>
-          </div>
-          <div class="faq-item reveal" data-open="false">
-            <button class="faq-q" aria-expanded="false">What happens after launch?<span class="pm" aria-hidden="true">+</span></button>
-            <div class="faq-a"><div><p>The site is yours, outright. If you would like us to keep improving it, we can arrange ongoing support — otherwise it simply runs.</p></div></div>
-          </div>
+        <div class="faq-list">
+          <details>
+            <summary>How much does a website cost?</summary>
+            <div class="faq-a">
+              <p>It depends on scope — pages, e-commerce, integrations, and automation. Tell us about your project and we'll respond with a fixed quote in CAD that itemizes exactly what's included, plus any recurring costs like hosting or care plans.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Who owns the website when it's done?</summary>
+            <div class="faq-a">
+              <p>You do. The domain is registered in your name, and you receive the finished site, its content, and documentation. We don't hold your business hostage to keep you paying.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Do you handle hosting and maintenance?</summary>
+            <div class="faq-a">
+              <p>Yes — we can set up hosting and offer care plans covering updates, backups, security, and small changes. If you'd rather manage it yourself, we'll hand everything over cleanly.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Is SEO included?</summary>
+            <div class="faq-a">
+              <p>SEO foundations are: fast loads, mobile-first builds, proper page structure, and local business setup. What we won't do is promise rankings — anyone guaranteeing a #1 spot is selling you something.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Can you redesign my existing site?</summary>
+            <div class="faq-a">
+              <p>Absolutely — redesigns are some of our favourite projects. We audit what you have, keep what works (including your existing search visibility), and rebuild the rest.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How do we start?</summary>
+            <div class="faq-a">
+              <p>Send us a few lines about your project through the form below, email us directly, or book a 30-minute call. We'll reply with next steps and a fixed quote.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Where are you located?</summary>
+            <div class="faq-a">
+              <p>Cambridge, Ontario, Canada — reachable at <a href="mailto:contact@webloped.ca">contact@webloped.ca</a> or <a href="tel:+16476947001">+1 (647) 694-7001</a>. Most projects run fully remote; if you're nearby, we're happy to meet in person.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
 
-    <!-- ============ CLOSING / CONTACT ============ -->
-    <section class="sec closing" id="contact" aria-labelledby="contactTitle">
-      <div class="wrap closing-grid">
-        <div class="closing-copy reveal">
-          <p class="eyebrow">Contact</p>
-          <h2 id="contactTitle">Let's make your next chapter look the part.</h2>
-          <p class="lede">Tell us about your project, or reach out directly. We reply personally — usually within one business day.</p>
-          <ul class="contact-lines">
-            <li>
-              <span class="k">Email</span>
-              <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>
-            </li>
-            <li>
-              <span class="k">Phone</span>
-              <a href="tel:+16476947001">+1 (647) 694-7001</a>
-            </li>
-            <li>
-              <span class="k">Book a call</span>
-              <a href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">Schedule 30 minutes <span aria-hidden="true">↗</span></a>
-            </li>
-          </ul>
+    <!-- 8 · CONTACT -->
+    <section class="section contact on-dark" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="eyebrow">07 — Contact</p>
+          <h2 class="section-title" id="contact-title">Tell us about your project.</h2>
+          <p class="section-lede">A few lines is enough. We'll reply with next steps and a fixed quote.</p>
+          <div class="contact-rows">
+            <a class="contact-row" href="mailto:contact@webloped.ca">
+              <span class="label">Email</span><span class="value">contact@webloped.ca</span>
+            </a>
+            <a class="contact-row" href="tel:+16476947001">
+              <span class="label">Phone</span><span class="value">+1 (647) 694-7001</span>
+            </a>
+            <a class="contact-row" href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">
+              <span class="label">Call</span><span class="value">Book a 30-min call →</span>
+            </a>
+          </div>
         </div>
-        <div class="enquiry reveal">
-          <h3>Start the conversation</h3>
-          <p class="form-note">This opens your email app with everything addressed to us — you review and send it yourself. Nothing is submitted automatically.</p>
-          <div class="form-error-summary" id="formErrors" role="alert" tabindex="-1"></div>
-          <form id="enquiryForm" novalidate>
-            <div class="field" data-field="name">
-              <label for="fName">Your name</label>
-              <input type="text" id="fName" name="name" autocomplete="name" aria-describedby="fNameErr">
-              <p class="err" id="fNameErr">Please tell us your name.</p>
-            </div>
-            <div class="field" data-field="email">
-              <label for="fEmail">Email address</label>
-              <input type="email" id="fEmail" name="email" autocomplete="email" aria-describedby="fEmailErr">
-              <p class="err" id="fEmailErr">Please enter a valid email address.</p>
-            </div>
-            <div class="field" data-field="type">
-              <label for="fType">Project type <span class="opt">(optional)</span></label>
-              <select id="fType" name="type">
-                <option value="">Select…</option>
-                <option>New website</option>
-                <option>Website redesign</option>
-                <option>Online store</option>
-                <option>Automation</option>
-                <option>Something else</option>
-              </select>
-            </div>
-            <div class="field" data-field="message">
-              <label for="fMsg">About your project</label>
-              <textarea id="fMsg" name="message" aria-describedby="fMsgErr" placeholder="What does your business do, and what should your website change?"></textarea>
-              <p class="err" id="fMsgErr">Please add a few words about your project (10+ characters).</p>
-            </div>
-            <button class="btn btn-primary" type="submit">Send via email <span class="arr" aria-hidden="true">→</span></button>
-            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          </form>
-        </div>
+        <form class="contact-form" id="quoteForm" novalidate>
+          <div class="form-errors" id="formErrors" role="alert" hidden></div>
+          <div class="field">
+            <label for="fName">Your name</label>
+            <input type="text" id="fName" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="fEmail">Email</label>
+            <input type="email" id="fEmail" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="fCompany">Company <span class="opt">(optional)</span></label>
+            <input type="text" id="fCompany" name="company" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="fType">What do you need?</label>
+            <select id="fType" name="project_type">
+              <option value="Not specified">Not sure yet</option>
+              <option value="New website">New website</option>
+              <option value="Redesign">Redesign of an existing site</option>
+              <option value="E-commerce">E-commerce store</option>
+              <option value="Automation">AI / automation</option>
+              <option value="Care plan">Hosting &amp; care plan</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fMsg">About your project</label>
+            <textarea id="fMsg" name="message" required aria-describedby="formNote" placeholder="What does your business do, and what should the website achieve?"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Compose email</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+          <p class="form-note" id="formNote">Direct delivery is being wired up — for now this opens your email app with your message addressed to <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>. Nothing is sent without your review.</p>
+          <noscript>
+            <p class="form-note">JavaScript is off, so this form can't open your email app. Please email us directly at <a href="mailto:contact@webloped.ca">contact@webloped.ca</a> instead.</p>
+          </noscript>
+        </form>
+      </div>
+    </section>
+    <!-- 9 · CTA BAND -->
+    <section class="cta-band on-dark" aria-labelledby="cta-title">
+      <div class="wrap cta-inner">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 id="cta-title">Let's build your <span class="grad-text">best salesperson.</span></h2>
+        <p class="cta-sub">Tell us about your project — we'll reply with next steps and a fixed quote in CAD.</p>
+        <a class="btn btn-primary btn-lg" href="#contact">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>
 
-  <footer class="site-foot">
+  <footer class="site-footer on-dark">
     <div class="wrap">
-      <div class="foot-grid">
-        <div class="foot-brand">
-          <a class="brand" href="#top" aria-label="Webloped — home">
-            <img src="assets/img/logo-w.png" alt="" width="40" height="40">
-            <span class="brand-name">Webloped</span>
-          </a>
-          <p>A web design and automation studio in Cambridge, Ontario.</p>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/logo-w.png" alt="" width="44" height="44">
+          <p>Web design &amp; AI automation.<br>Cambridge, Ontario, Canada.</p>
         </div>
-        <nav aria-label="Footer">
-          <p class="foot-h">Explore</p>
-          <ul class="foot-links">
+        <nav class="footer-nav" aria-label="Footer">
+          <ul>
             <li><a href="#work">Work</a></li>
             <li><a href="#workshop">Workshop</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#process">Process</a></li>
-            <li><a href="#people">People</a></li>
             <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <div>
-          <p class="foot-h">Contact</p>
-          <ul class="foot-links">
-            <li><a href="mailto:contact@webloped.ca">contact@webloped.ca</a></li>
-            <li><a href="tel:+16476947001">+1 (647) 694-7001</a></li>
-            <li><a href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">Book a call ↗</a></li>
-          </ul>
+        <div class="footer-contact">
+          <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>
+          <a href="tel:+16476947001">+1 (647) 694-7001</a>
+          <a href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">Book a 30-min call</a>
         </div>
       </div>
-      <div class="foot-word" aria-hidden="true">Webloped</div>
-      <div class="foot-base">
+      <div class="footer-base">
         <span>© 2026 Webloped. All rights reserved.</span>
-        <span>Concept projects shown are original demonstrations.</span>
+        <span>Design preview — not the live site.</span>
       </div>
+      <p class="footer-word" aria-hidden="true">Webloped</p>
     </div>
   </footer>
 
