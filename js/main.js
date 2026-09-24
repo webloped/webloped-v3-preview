@@ -33,6 +33,16 @@
         setOpen(false);
       }
     });
+
+    // Mobile menu CTA: mirror the header CTA inside the menu, since the
+    // header CTA is hidden below 900px. CSS shows it only when the menu opens.
+    var headerCta = document.querySelector(".site-header .header-cta");
+    if (headerCta) {
+      var menuCta = headerCta.cloneNode(true);
+      menuCta.classList.add("nav-cta");
+      menuCta.removeAttribute("id");
+      nav.appendChild(menuCta);
+    }
   }
 
   // ---- Contact form: honest mailto compose (real endpoint = owner-provisioned).
