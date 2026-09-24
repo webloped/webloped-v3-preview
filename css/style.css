@@ -1049,3 +1049,154 @@ a.contact-row:hover .value { color: var(--lilac); }
 @media (prefers-reduced-motion: reduce) {
   .veiled .veil { opacity: 0; }
 }
+
+/* ================= Stage 3 — Section craft =================
+   One signature refinement per section. CSS-first, transform/opacity-led,
+   integrated with the existing .rv/.in reveal system. Vanilla only. */
+
+:root { --ease-out: cubic-bezier(0.16, 0.7, 0.2, 1); }
+
+/* --- section-head cascade: eyebrow, title, lede arrive in sequence --- */
+.js .section-head.rv { opacity: 1; translate: none; transition: none; }
+.js .section-head.rv > * {
+  opacity: 0; translate: 0 26px;
+  transition: opacity 700ms ease, translate 700ms ease;
+  transition-delay: var(--rd, 0ms);
+}
+.js .section-head.rv.in > * { opacity: 1; translate: 0 0; }
+.js .section-head.rv > :nth-child(2) { transition-delay: calc(var(--rd, 0ms) + 90ms); }
+.js .section-head.rv > :nth-child(3) { transition-delay: calc(var(--rd, 0ms) + 180ms); }
+
+/* --- services: violet sweep across the top rule, marker stretch, media tint --- */
+.service-group { position: relative; }
+.service-group::after {
+  content: ""; position: absolute; top: -2px; left: 0; right: 0; height: 2px;
+  background: var(--grad-brand); transform: scaleX(0); transform-origin: left center;
+  transition: transform 450ms var(--ease-out);
+}
+.service-group:hover::after, .service-group:focus-within::after { transform: scaleX(1); }
+.service-group li::before { transition: width 300ms ease, background 300ms ease; }
+.service-group:hover li::before, .service-group:focus-within li::before { width: 20px; }
+.service-media { position: relative; }
+.service-media::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(160deg, rgba(109, 56, 232, 0.22), transparent 55%);
+  opacity: 0; transition: opacity 400ms ease;
+}
+.service-group:hover .service-media::after { opacity: 1; }
+
+/* --- work: index rule line, arrow nudge, placeholder sheen on reveal --- */
+.work-index { display: flex; align-items: center; gap: 16px; }
+.work-index::after { content: ""; flex: 1; height: 1px; background: var(--line-light); }
+.work-link a span { display: inline-block; transition: translate 250ms ease; }
+.work-link a:hover span, .work-link a:focus-visible span { translate: 5px 0; }
+
+/* --- process: pill badges, connector arrows, card lift --- */
+.process-step {
+  position: relative;
+  transition: transform 260ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+.process-step:hover, .process-step:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(109, 56, 232, 0.4);
+  box-shadow: var(--shadow-lift);
+}
+.process-step .step-n {
+  display: inline-block; padding: 7px 16px; border-radius: 999px;
+  border: 1px solid rgba(109, 56, 232, 0.45); background: rgba(109, 56, 232, 0.08);
+  margin-bottom: 20px;
+}
+@media (min-width: 901px) {
+  .process-step:not(:last-child)::after {
+    content: "\2192"; position: absolute; right: -30px; top: 40px; z-index: 1;
+    width: 28px; text-align: center; color: var(--violet); font-size: 20px;
+  }
+}
+
+/* --- people: portrait colour treatment, card lift, role underline --- */
+.person { transition: transform 260ms ease, box-shadow 300ms ease; }
+.person:hover, .person:focus-within { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
+.person img { filter: saturate(0.82) contrast(1.02); transition: filter 500ms ease; }
+.person:hover img, .person:focus-within img { filter: saturate(1.05) contrast(1); }
+.person .role { display: inline-block; position: relative; }
+.person .role::after {
+  content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 100%;
+  background: var(--grad-brand); transform: scaleX(0); transform-origin: left center;
+  transition: transform 400ms var(--ease-out);
+}
+.person:hover .role::after, .person:focus-within .role::after { transform: scaleX(1); }
+
+/* --- faq: smooth open/close, hover states, open card emphasis --- */
+.faq-list details { transition: border-color 300ms ease, box-shadow 300ms ease; }
+.faq-list details[open] { border-color: rgba(109, 56, 232, 0.4); box-shadow: var(--shadow-card); }
+.faq-list summary { transition: background 250ms ease; border-radius: 14px; }
+.faq-list details[open] summary { border-radius: 14px 14px 0 0; }
+.faq-list summary:hover { background: rgba(109, 56, 232, 0.06); }
+.faq-list details .faq-a {
+  display: grid; grid-template-rows: 0fr; padding: 0;
+  transition: grid-template-rows 480ms var(--ease-out);
+}
+.faq-list details[open] .faq-a { grid-template-rows: 1fr; }
+.faq-list details .faq-a > * { overflow: hidden; min-height: 0; }
+.faq-list details .faq-a > p { padding-left: 28px; padding-right: 28px; }
+.faq-list details .faq-a > p:last-child { padding-bottom: 28px; }
+
+/* --- investment card: hairline glow + corner aura --- */
+.invest-card { position: relative; overflow: hidden; }
+.invest-card::before {
+  content: ""; position: absolute; top: 0; left: 56px; right: 56px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 181, 255, 0.55), transparent);
+}
+.invest-card::after {
+  content: ""; position: absolute; top: -140px; right: -100px;
+  width: 340px; height: 340px; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(109, 56, 232, 0.28), transparent);
+}
+
+/* --- service strip: check-circle markers --- */
+.service-strip li { position: relative; padding-left: 34px; }
+.service-strip li::before {
+  content: "\2713"; position: absolute; left: 0; top: 1px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(109, 56, 232, 0.1); color: var(--violet);
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* --- contact rows: hover wash, sliding value --- */
+.contact-row { transition: background 250ms ease; }
+.contact-row .value { transition: translate 250ms ease, color 250ms ease; }
+a.contact-row:hover { background: rgba(200, 181, 255, 0.06); }
+a.contact-row:hover .value, a.contact-row:focus-visible .value { translate: 4px 0; }
+
+/* --- form fields: focus lift --- */
+.field label { transition: color 250ms ease; }
+.field input, .field textarea, .field select {
+  transition: border-color 250ms ease, background 250ms ease;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  background: #141419; border-color: var(--violet);
+}
+.field:focus-within label { color: var(--lilac); }
+
+/* --- workshop controls: active stage gets the brand gradient --- */
+.assembly-controls button[aria-current="true"] {
+  background: var(--grad-brand); border-color: transparent;
+  box-shadow: 0 6px 20px -6px rgba(109, 56, 232, 0.55);
+}
+
+/* --- motion-gated flourishes --- */
+@media (prefers-reduced-motion: no-preference) {
+  /* one-shot sheen sweep across the work placeholder when it reveals */
+  .js .work-block.in .work-visual.placeholder::after {
+    content: ""; position: absolute; inset: -20%; pointer-events: none;
+    background: linear-gradient(105deg, transparent 42%, rgba(200, 181, 255, 0.16) 50%, transparent 58%);
+    transform: translateX(-60%);
+    animation: sheenSweep 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.35s 1 both;
+  }
+  @keyframes sheenSweep { to { transform: translateX(60%); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .section-head.rv > * { opacity: 1; translate: none; transition: none; }
+  .faq-list details .faq-a { transition: none; }
+}

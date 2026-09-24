@@ -492,4 +492,34 @@
       tx = 0; tz = 0; kick();
     });
   })();
+
+  // ---- v4 polish Stage 3: FAQ smooth open/close ----
+  // Opening animates for free (CSS grid-template-rows 0fr -> 1fr on [open]).
+  // Closing needs a hand: hold 1fr, ease to 0fr, then drop the open state.
+  (function initFaqMotion() {
+    if (reducedMotion) { return; }
+    Array.prototype.forEach.call(document.querySelectorAll(".faq-list details"), function (d) {
+      var s = d.querySelector("summary");
+      var a = d.querySelector(".faq-a");
+      if (!s || !a) { return; }
+      s.addEventListener("click", function (e) {
+        if (!d.open) { return; }
+        e.preventDefault();
+        a.style.gridTemplateRows = "1fr";
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { a.style.gridTemplateRows = "0fr"; });
+        });
+        function done(ev) {
+          if (ev && ev.propertyName !== "grid-template-rows") { return; }
+          d.open = false;
+          a.style.gridTemplateRows = "";
+          a.removeEventListener("transitionend", done);
+        }
+        a.addEventListener("transitionend", done);
+        window.setTimeout(function () {
+          if (d.open && a.style.gridTemplateRows === "0fr") { done(); }
+        }, 650);
+      });
+    });
+  })();
 })();
