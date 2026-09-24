@@ -1200,3 +1200,76 @@ a.contact-row:hover .value, a.contact-row:focus-visible .value { translate: 4px 
   .js .section-head.rv > * { opacity: 1; translate: none; transition: none; }
   .faq-list details .faq-a { transition: none; }
 }
+
+/* ================= Stage 4 — Fine detail + performance =================
+   Case-study pages elevated to the homepage standard, selection styling,
+   404 page, and the placeholder sheen generalized to any revealed ancestor. */
+
+/* --- case hero: ambient glow, breadcrumb --- */
+.case-hero { position: relative; overflow: hidden; }
+.case-hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(720px 420px at 12% 0%, rgba(109, 56, 232, 0.22), transparent 60%),
+    radial-gradient(560px 380px at 88% 20%, rgba(200, 181, 255, 0.12), transparent 60%);
+}
+.case-hero .wrap { position: relative; }
+.case-crumb { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 32px; color: var(--muted-dark); }
+.case-crumb a { color: var(--lilac); text-decoration: none; font-weight: 600; }
+.case-crumb a:hover { text-decoration: underline; }
+.case-crumb [aria-current] { color: var(--muted-dark); }
+.case-hero .section-head { max-width: 920px; }
+.case-hero .eyebrow { color: var(--lilac); }
+.case-hero .eyebrow::before { background: var(--lilac); }
+.case-hero h1 { color: #fff; }
+.case-hero .section-lede { color: var(--muted-dark); }
+
+/* --- fact cards --- */
+.case-facts { display: grid; gap: 16px; align-content: start; }
+.case-fact {
+  position: relative; border: 1px solid var(--line-light); border-radius: 16px;
+  background: var(--white); padding: 24px 24px 24px 76px;
+  transition: transform 260ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+.case-fact:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: rgba(109, 56, 232, 0.35); }
+.case-fact .fact-n {
+  position: absolute; left: 26px; top: 28px;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--violet);
+}
+.case-fact h2 { font-size: 1.05rem; margin: 0 0 6px; }
+.case-fact p { margin: 0; color: var(--muted-light); font-size: 16.5px; }
+.case-fact.is-pending { border-style: dashed; background: transparent; }
+.case-fact.is-pending:hover { border-color: rgba(109, 56, 232, 0.5); }
+.case-fact.is-pending p { font-style: italic; }
+
+/* --- case nav arrow nudge --- */
+.case-nav a span[aria-hidden] { display: inline-block; transition: translate 250ms ease; }
+.case-nav a:first-child:hover span[aria-hidden] { translate: -4px 0; }
+.case-nav a:last-child:hover span[aria-hidden] { translate: 4px 0; }
+
+/* --- text selection --- */
+::selection { background: var(--violet); color: #fff; }
+
+/* --- 404 --- */
+.not-found { min-height: 72vh; display: flex; align-items: center; background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+.not-found::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(680px 400px at 50% 30%, rgba(109, 56, 232, 0.22), transparent 65%);
+}
+.not-found .wrap { position: relative; text-align: center; max-width: 640px; }
+.not-found .eyebrow { justify-content: center; }
+.not-found .eyebrow::before { display: none; }
+.not-found h1 { font-size: clamp(3rem, 9vw, 5.5rem); letter-spacing: -0.03em; margin: 0 0 16px; }
+.not-found h1 .grad-text { display: inline-block; white-space: nowrap; }
+.not-found p { color: var(--muted-dark); font-size: 18px; margin: 0 0 32px; }
+
+/* --- sheen generalized: any revealed placeholder, homepage or case pages --- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .in.work-visual.placeholder::after,
+  .js .in .work-visual.placeholder::after {
+    content: ""; position: absolute; inset: -20%; pointer-events: none;
+    background: linear-gradient(105deg, transparent 42%, rgba(200, 181, 255, 0.16) 50%, transparent 58%);
+    transform: translateX(-60%);
+    animation: sheenSweep 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.35s 1 both;
+  }
+}
