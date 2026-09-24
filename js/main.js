@@ -250,7 +250,7 @@
   if (!reducedMotion && "IntersectionObserver" in window) {
     var SELECTORS = ".section-head, .work-block, .service-group, .service-strip," +
       " .process-step, .person, .invest-card, .faq-list details, .contact-grid > *," +
-      " .case-fact, .case-body .work-visual";
+      " .case-fact, .case-body .work-visual, .prose, .post-card, .plan-card, .step, .team-card";
     var els = Array.prototype.filter.call(
       document.querySelectorAll(SELECTORS),
       function (el) { return !el.closest("#workshop"); }
