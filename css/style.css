@@ -758,8 +758,8 @@ a.contact-row:hover .value { color: var(--lilac); }
   }
 }
 @keyframes posterDrift {
-  0%, 100% { transform: rotateX(52deg) rotateZ(-36deg); }
-  50% { transform: rotateX(47deg) rotateZ(-31deg) translateZ(18px); }
+  0%, 100% { transform: rotateX(calc(52deg + var(--tx, 0deg))) rotateZ(calc(-36deg + var(--tz, 0deg))); }
+  50% { transform: rotateX(calc(47deg + var(--tx, 0deg))) rotateZ(calc(-31deg + var(--tz, 0deg))) translateZ(18px); }
 }
 @keyframes signalDraw {
   0% { stroke-dashoffset: 920; opacity: 0; }
@@ -1011,4 +1011,41 @@ a.contact-row:hover .value { color: var(--lilac); }
   .scroll-cue { display: none; }
   .cta-band { padding: 90px 0; }
   .footer-word { margin-top: 48px; }
+}
+
+/* ================= v4 polish — Stage 2: hero elevation =================
+   Load veil, gradient headline accent, poster lighting (aura + ground
+   shadow + rim light), and cursor-follow tilt on the poster.
+   Vanilla only; everything gated behind no-preference. */
+
+/* Load veil: covers first paint, lifts to reveal the entrance. */
+.veiled .veil { opacity: 1; pointer-events: auto; }
+
+/* Headline accent: gradient instead of flat lilac. */
+.hero h1 .accent {
+  background: linear-gradient(115deg, #d9c8ff 5%, #a47fff 55%, #8f5bf0 95%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+
+/* Poster lighting: violet aura behind the stack, soft ground shadow. */
+.hero-visual { position: relative; }
+.hero-visual::before {
+  content: ""; position: absolute; inset: -12% -20%;
+  background: radial-gradient(48% 48% at 50% 42%, rgba(109, 56, 232, 0.38), transparent 70%);
+  filter: blur(28px); pointer-events: none;
+}
+.hero-visual::after {
+  content: ""; position: absolute; left: 14%; right: 14%; bottom: 2%; height: 70px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.6), transparent 70%);
+  filter: blur(20px); pointer-events: none;
+}
+/* Rim light on the poster layers. */
+.hero .layer {
+  box-shadow: 0 34px 70px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.hero .layer-ui { box-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .veiled .veil { opacity: 0; }
 }

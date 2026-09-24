@@ -448,4 +448,48 @@
       ctaIO.observe(el);
     });
   }
+
+  // ---- v4 polish Stage 2: hero elevation ----
+  // Load-veil lift: the inline head script covered first paint with .veiled;
+  // lift it shortly after DOM ready so the entrance plays behind the curtain.
+  (function initVeilLift() {
+    if (!document.documentElement.classList.contains("veiled")) { return; }
+    window.setTimeout(function () {
+      document.documentElement.classList.remove("veiled");
+    }, 240);
+  })();
+
+  // Poster cursor tilt: lerped --tx/--tz compose with the posterDrift
+  // keyframes (calc inside rotateX/rotateZ). Fine pointers only, no motion
+  // when the visitor prefers reduced motion.
+  (function initPosterTilt() {
+    if (!window.matchMedia("(pointer: fine)").matches || reducedMotion) { return; }
+    var stage = document.querySelector(".hero .assembly-stage");
+    var hero = document.querySelector(".hero");
+    if (!stage || !hero) { return; }
+    var tx = 0, tz = 0, cx = 0, cy = 0, active = false;
+    function loop() {
+      cx += (tx - cx) * 0.08;
+      cy += (tz - cy) * 0.08;
+      stage.style.setProperty("--tx", cy.toFixed(2) + "deg");
+      stage.style.setProperty("--tz", cx.toFixed(2) + "deg");
+      if (Math.abs(tx - cx) > 0.02 || Math.abs(tz - cy) > 0.02) {
+        requestAnimationFrame(loop);
+      } else { active = false; }
+    }
+    function kick() {
+      if (!active) { active = true; requestAnimationFrame(loop); }
+    }
+    hero.addEventListener("mousemove", function (e) {
+      var r = hero.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width - 0.5;
+      var ny = (e.clientY - r.top) / r.height - 0.5;
+      tx = (nx * 10).toFixed(2);
+      tz = (-ny * 8).toFixed(2);
+      kick();
+    });
+    hero.addEventListener("mouseleave", function () {
+      tx = 0; tz = 0; kick();
+    });
+  })();
 })();
